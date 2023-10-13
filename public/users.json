@@ -1,0 +1,19 @@
+{
+    "users": [
+        {
+            "user": "marc@event.finance.com",
+            "password": "pass",
+            "department": "finance"
+        },
+        {
+            "user": "maria@event.product.com",
+            "password": "password2",
+            "department": "product"
+        },
+        {
+            "user": "laura@event.service.com",
+            "password": "password3",
+            "department": "service"
+        }
+    ]
+}

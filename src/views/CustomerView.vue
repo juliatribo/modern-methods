@@ -90,6 +90,22 @@
                             <input type="checkbox" class="form-check-input" id="decorations" name="preferences">
                             <label class="form-check-label" for="decorations">Decorations</label>
                         </div>
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="parties" name="preferences">
+                            <label class="form-check-label" for="parties">Parties</label>
+                        </div>
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="photos" name="preferences">
+                            <label class="form-check-label" for="photos">Photos/Filming</label>
+                        </div>
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="breakfast" name="preferences">
+                            <label class="form-check-label" for="breakfast">Breakfast, lunch, dinner</label>
+                        </div>
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="drinks" name="preferences">
+                            <label class="form-check-label" for="drinks">Soft/ hot drinks</label>
+                        </div>
                         <!-- Include other preference checkboxes with the same structure -->
                     </div>
                 </div>

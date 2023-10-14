@@ -1,99 +1,82 @@
 <template>
     <div>
-        <body>
-            <div>
-                <form>
+        <HeaderComponent />
+        <div class="container mt-5">
+            <button @click="showForm = true" v-if="!showForm" class="btn btn-primary mb-3">Create Event Form</button>
+            <form v-if="showForm">
+                <div class="form-group">
+                    <label for="recordNumber">Record Number:</label>
                     <div>
-                        <label for="recordNumber">Record Number:</label>
-                        <div>
-                            <input type="text" id="recordNumber" name="recordNumber">
-                        </div>
+                        <input type="text" class="form-control" id="recordNumber" name="recordNumber">
                     </div>
+                </div>
+                <div class="form-group">
+                    <label for="clientName">Client Name:</label>
                     <div>
-                        <label for="clientName">Client Name:</label>
-                        <div>
-                            <input type="text" name="clientName">
-                        </div>
+                        <input type="text" class="form-control" name="clientName">
                     </div>
+                </div>
+                <div class="form-group">
+                    <label for="eventType">Event Type:</label>
                     <div>
-                        <label for="eventType">Event Type:</label>
-                        <div>
-                            <input type="text" name="eventType">
-                        </div>
+                        <input type="text" class="form-control" name="eventType">
                     </div>
+                </div>
+                <div class="form-group">
+                    <label for="dateFrom">From:</label>
                     <div>
-                        <label for="dateFrom">From:</label>
-                        <div>
-                            <input type="date" id="dateFrom" name="dateFrom">
-                        </div>
-                        <label for="dateTo">To:</label>
-                        <div>
-                            <input type="date" id="dateTo" name="dateTo">
-                        </div>
+                        <input type="date" class="form-control" id="dateFrom" name="dateFrom">
                     </div>
+                    <label for="dateTo">To:</label>
                     <div>
-                        <label for="attendees">Expected Number of Attendees:</label>
-                        <div>
-                            <input type="number" id="attendees" name="attendees">
-                        </div>
+                        <input type="date" class="form-control" id="dateTo" name="dateTo">
                     </div>
+                </div>
+                <div class="form-group">
+                    <label for="attendees">Expected Number of Attendees:</label>
                     <div>
-                        <label for="preferences">Preferences:</label>
-                        <div>
-                            <div>
-                                <input type="checkbox" id="decorations" name="preferences">
-                                <label for="decorations">Decorations</label>
-                            </div>
-                            <div>
-                                <input type="checkbox" id="parties" name="preferences">
-                                <label for="parties">Parties</label>
-                            </div>
-                            <div>
-                                <input type="checkbox" id="photosFilming" name="preferences">
-                                <label for="photosFilming">Photos/Filming</label>
-                            </div>
-                            <div>
-                                <input type="checkbox" id="breakfast" name="preferences">
-                                <label for="breakfast">Breakfast</label>
-                            </div>
-                            <div>
-                                <input type="checkbox" id="lunch" name="preferences">
-                                <label for="lunch">Lunch</label>
-                            </div>
-                            <div>
-                                <input type="checkbox" id="dinner" name="preferences">
-                                <label for="dinner">Dinner</label>
-                            </div>
-                            <div>
-                                <input type="checkbox" id="softDrinks" name="preferences">
-                                <label for="softDrinks">Soft/Drinks</label>
-                            </div>
-                        </div>
+                        <input type="number" class="form-control" id="attendees" name="attendees">
                     </div>
+                </div>
+                <div class="form-group">
+                    <label for="preferences">Preferences:</label>
                     <div>
-                        <label for="expectedBudget">Expected Budget:</label>
-                        <div>
-                            <input type="text" id="expectedBudget" name="expectedBudget">
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="decorations" name="preferences">
+                            <label class="form-check-label" for="decorations">Decorations</label>
                         </div>
+                        <!-- Include other preference checkboxes with the same structure -->
                     </div>
+                </div>
+                <div class="form-group">
+                    <label for="expectedBudget">Expected Budget:</label>
                     <div>
-                        <div>
-                            <button type="submit">Submit</button>
-                        </div>
+                        <input type="text" class="form-control" id="expectedBudget" name="expectedBudget">
                     </div>
-                </form>
-            </div>
-        </body>
+                </div>
+                <div class="form-group">
+                    <div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
 </template>
-
+  
 <script>
-
+import HeaderComponent from '../components/HeaderComponent.vue';
 export default {
     name: "CustomerView",
-
-}
-
+    data() {
+        return {
+            showForm: false,
+        };
+    },
+    components: {
+        HeaderComponent
+    }
+};
 </script>
-
+  
 <style></style>

@@ -58,11 +58,12 @@
                                 <label for="parties">Parties</label>
                             </div>
                             <div>
-                                <input type="checkbox" id="photosFilming" value="photosFilming"  v-model="selectedPreferences">
+                                <input type="checkbox" id="photosFilming" value="photosFilming"
+                                    v-model="selectedPreferences">
                                 <label for="photosFilming">Photos/Filming</label>
                             </div>
                             <div>
-                                <input type="checkbox" id="breakfast" value="breakfast" v-model="selectedPreferences" >
+                                <input type="checkbox" id="breakfast" value="breakfast" v-model="selectedPreferences">
                                 <label for="breakfast">Breakfast</label>
                             </div>
                             <div>
@@ -79,11 +80,12 @@
                             </div>
                         </div>
                     </div>
-                    <div v-if="selectedPreferences.length!=0">
+                    <div v-if="selectedPreferences.length != 0">
                         Selected Preferences:
-                            <ul>
-                                <li v-for="selectedPreference in selectedPreferences" :key="selectedPreference">{{ selectedPreference }}</li>
-                            </ul>
+                        <ul>
+                            <li v-for="selectedPreference in selectedPreferences" :key="selectedPreference">{{
+                                selectedPreference }}</li>
+                        </ul>
                     </div>
                     <div>
                         <div class="form-check">
@@ -117,7 +119,7 @@
                 </div>
                 <div class="form-group">
                     <div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="btn btn-primary" @click="saveData">Submit</button>
                     </div>
                 </div>
             </form>
@@ -128,20 +130,37 @@
 <script>
 export default {
     name: "CustomerView",
-    data:function () {
+    data: function () {
         return {
-            showForm:false,
+            showForm: false,
             recordNumber: "",
             name: "",
             eventType: "",
             dateFrom: "",
             dateTo: "",
-            numAttendees:null,
-            selectedPreferences:[],
-            expectedBudget:null
+            numAttendees: null,
+            selectedPreferences: [],
+            expectedBudget: null
         }
     },
-    method:{
+    methods: {
+        saveData() {
+            const data = {
+                recordNumber: this.recordNumber,
+                name: this.name,
+                //eventType: this.eventType,
+                //dateFrom: this.dateFrom,
+                //dateTo: this.dateTo,
+                //numAttendees: this.numAttendees,
+                //selectedPreferences: this.selectedPreferences,
+                //expectedBudget: this.expectedBudget
+            };
+            const jsonData = JSON.stringify(data);
+
+            // Save the data to localStorage
+            localStorage.setItem('../../public/data.json', jsonData);
+            console.log('Data has been saved to localStorage');
+        }
     }
 }
 
@@ -149,40 +168,40 @@ export default {
 
 <style scoped>
 .event-form {
-  margin: 20px;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  background-color: #f9f9f9;
-  max-width: 600px;
-  margin: 0 auto;
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    max-width: 600px;
+    margin: 0 auto;
 }
 
 .form-group {
-  margin-bottom: 20px;
+    margin-bottom: 20px;
 }
 
 .label {
-  font-weight: bold;
+    font-weight: bold;
 }
 
 .input {
-  width: 100%;
-  padding: 5px;
-  border: 1px solid #ccc;
-  border-radius: 3px;
+    width: 100%;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
 }
 
 .btn {
-  background-color: #007BFF;
-  color: #fff;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 3px;
-  cursor: pointer;
+    background-color: #007BFF;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
 }
 
 .btn:hover {
-  background-color: #0056b3;
+    background-color: #0056b3;
 }
 </style>

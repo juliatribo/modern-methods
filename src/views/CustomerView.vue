@@ -1,31 +1,35 @@
 <template>
-    <div class="event-form">
-        <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Event Planning Request Form</title>
-        </head>
-        <body>
-            <div>
-                <form>
-                    <div class="form-group ">
-                        <label >Record Number:</label>
-                        <div>
-                            <input v-model="recordNumber"  type="text" id="recordNumber" name="recordNumber">
-                        </div>
+    <div>
+        <HeaderComponent />
+        <div class="container mt-5">
+            <button @click="showForm = true" v-if="!showForm" class="btn btn-primary mb-3">Create Event Form</button>
+            <form v-if="showForm">
+                <div class="form-group">
+                    <label for="recordNumber">Record Number:</label>
+                    <div>
+                        <input type="text" class="form-control" id="recordNumber" name="recordNumber">
                     </div>
+                </div>
+                <div class="form-group">
+                    <label for="clientName">Client Name:</label>
                     <div>
                         <label for="clientName">Client Name:</label>
                         <div>
                             <input v-model="name" type="text" name="clientName">
                         </div>
                     </div>
+                </div>
+                <div class="form-group">
+                    <label for="eventType">Event Type:</label>
                     <div>
                         <label for="eventType">Event Type:</label>
                         <div>
                             <input v-model="eventType" type="text" name="eventType">
                         </div>
                     </div>
+                </div>
+                <div class="form-group">
+                    <label for="dateFrom">From:</label>
                     <div>
                         <label for="dateFrom">From:</label>
                         <div>
@@ -36,12 +40,16 @@
                             <input v-model="dateTo" type="date" id="dateTo" name="dateTo">
                         </div>
                     </div>
+                    <label for="dateTo">To:</label>
                     <div>
                         <label for="attendees">Expected Number of Attendees:</label>
                         <div>
                             <input v-model="numAttendees" type="number" id="attendees" name="attendees">
                         </div>
                     </div>
+                </div>
+                <div class="form-group">
+                    <label for="attendees">Expected Number of Attendees:</label>
                     <div>
                         <label for="preferences">Preferences:</label>
                         <div>
@@ -82,24 +90,32 @@
                             </ul>
                     </div>
                     <div>
-                        <label for="expectedBudget">Expected Budget:</label>
-                        <div>
-                            <input type="text" id="expectedBudget" name="expectedBudget">
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="decorations" name="preferences">
+                            <label class="form-check-label" for="decorations">Decorations</label>
                         </div>
+                        <!-- Include other preference checkboxes with the same structure -->
                     </div>
+                </div>
+                <div class="form-group">
+                    <label for="expectedBudget">Expected Budget:</label>
                     <div>
                         <div>
                             <button type="submit" class="btn btn-primary">Submit</button>
                         </div>
                     </div>
-                </form>
-            </div>
-        </body>
+                </div>
+                <div class="form-group">
+                    <div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
 </template>
-
+  
 <script>
-
 export default {
     name: "CustomerView",
     data:function () {

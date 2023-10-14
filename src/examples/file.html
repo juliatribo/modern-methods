@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap CSS link -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Event Planning Request Form</title>
+</head>
+
+<body>
+    <div class="container mt-5">
+        <form>
+            <div class="form-group row">
+                <label for="recordNumber" class="col-sm-2 col-form-label">Record Number:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="recordNumber" name="recordNumber">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="clientName" class="col-sm-2 col-form-label">Client Name:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="clientName" name="clientName">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="eventType" class="col-sm-2 col-form-label">Event Type:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="eventType" name="eventType">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="dateFrom" class="col-sm-2 col-form-label">From:</label>
+                <div class="col-sm-4">
+                    <input type="date" class="form-control" id="dateFrom" name="dateFrom">
+                </div>
+                <label for="dateTo" class="col-sm-2 col-form-label">To:</label>
+                <div class="col-sm-4">
+                    <input type="date" class="form-control" id="dateTo" name="dateTo">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="attendees" class="col-sm-2 col-form-label">Expected Number of Attendees:</label>
+                <div class="col-sm-10">
+                    <input type="number" class="form-control" id="attendees" name="attendees">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="preferences" class="col-sm-2 col-form-label">Preferences:</label>
+                <div class="col-sm-10">
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" id="decorations" name="preferences">
+                        <label class="form-check-label" for="decorations">Decorations</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" id="parties" name="preferences">
+                        <label class="form-check-label" for="parties">Parties</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" id="photosFilming" name="preferences">
+                        <label class="form-check-label" for="photosFilming">Photos/Filming</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" id="breakfast" name="preferences">
+                        <label class="form-check-label" for="breakfast">Breakfast</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" id="lunch" name="preferences">
+                        <label class="form-check-label" for="lunch">Lunch</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" id="dinner" name="preferences">
+                        <label class="form-check-label" for="dinner">Dinner</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" id="softDrinks" name="preferences">
+                        <label class="form-check-label" for="softDrinks">Soft/Drinks</label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="expectedBudget" class="col-sm-2 col-form-label">Expected Budget:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="expectedBudget" name="expectedBudget">
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-10">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <!-- Bootstrap JS scripts (optional, but may be required for some components) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

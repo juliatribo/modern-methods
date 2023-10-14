@@ -1,6 +1,11 @@
 {
     "users": [
         {
+            "user": "natassa",
+            "password": "natassa",
+            "department": "customer"
+        },
+        {
             "user": "marc@event.finance.com",
             "password": "pass",
             "department": "finance"

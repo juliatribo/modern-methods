@@ -54,8 +54,8 @@ export default {
                 else if (userFound.department == "service") {
                     this.$router.push('service');
                 }
-                else if (userFound.department == "custormerService") {
-                    this.$router.push('custormerService');
+                else if (userFound.department == "customer") {
+                    this.$router.push('customer');
                 }
                 else {
                     this.$router.push('product');

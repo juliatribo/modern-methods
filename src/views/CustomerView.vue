@@ -11,7 +11,6 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="clientName">Client Name:</label>
                     <div>
                         <label for="clientName">Client Name:</label>
                         <div>
@@ -20,7 +19,6 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="eventType">Event Type:</label>
                     <div>
                         <label for="eventType">Event Type:</label>
                         <div>
@@ -29,7 +27,6 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="dateFrom">From:</label>
                     <div>
                         <label for="dateFrom">From:</label>
                         <div>
@@ -49,7 +46,6 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="attendees">Expected Number of Attendees:</label>
                     <div>
                         <label for="preferences">Preferences:</label>
                         <div>
@@ -100,9 +96,7 @@
                 <div class="form-group">
                     <label for="expectedBudget">Expected Budget:</label>
                     <div>
-                        <div>
-                            <button type="submit" class="btn btn-primary">Submit</button>
-                        </div>
+                        <input type="text" class="form-control" id="expectedBudget" name="expectedBudget">
                     </div>
                 </div>
                 <div class="form-group">
@@ -120,6 +114,7 @@ export default {
     name: "CustomerView",
     data:function () {
         return {
+            showForm:false,
             recordNumber: "",
             name: "",
             eventType: "",

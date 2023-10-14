@@ -2,9 +2,23 @@
     <div>
         <form>
             <div class="form-group">
-                <label for="recordNumber">Record Number:</label>
+                <label for="department">Requesting department:</label>
                 <div>
-                    <input type="text" class="form-control" id="recordNumber" name="recordNumber">
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" id="prod" name="preferences">
+                        <label class="form-check-label" for="prod">Production</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" id="financial" name="preferences">
+                        <label class="form-check-label" for="financial">Financial</label>
+                    </div>
+
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="projectReference">Project Reference:</label>
+                <div>
+                    <input type="text" class="form-control" id="projectReference" name="projectReference">
                 </div>
             </div>
             <div class="form-group">
@@ -35,32 +49,7 @@
                     <input type="number" class="form-control" id="attendees" name="attendees">
                 </div>
             </div>
-            <div class="form-group">
-                <label for="preferences">Preferences:</label>
-                <div>
-                    <div class="form-check">
-                        <input type="checkbox" class="form-check-input" id="decorations" name="preferences">
-                        <label class="form-check-label" for="decorations">Decorations</label>
-                    </div>
-                    <div class="form-check">
-                        <input type="checkbox" class="form-check-input" id="parties" name="preferences">
-                        <label class="form-check-label" for="parties">Parties</label>
-                    </div>
-                    <div class="form-check">
-                        <input type="checkbox" class="form-check-input" id="photos" name="preferences">
-                        <label class="form-check-label" for="photos">Photos/Filming</label>
-                    </div>
-                    <div class="form-check">
-                        <input type="checkbox" class="form-check-input" id="breakfast" name="preferences">
-                        <label class="form-check-label" for="breakfast">Breakfast, lunch, dinner</label>
-                    </div>
-                    <div class="form-check">
-                        <input type="checkbox" class="form-check-input" id="drinks" name="preferences">
-                        <label class="form-check-label" for="drinks">Soft/ hot drinks</label>
-                    </div>
-                    <!-- Include other preference checkboxes with the same structure -->
-                </div>
-            </div>
+
             <div class="form-group">
                 <label for="expectedBudget">Expected Budget:</label>
                 <div>

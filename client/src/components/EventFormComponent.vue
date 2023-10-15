@@ -147,17 +147,6 @@ export default {
                 selectedPreferences: this.selectedPreferences,
                 expectedBudget: this.expectedBudget
             });
-            // this.$emit('financialData', {
-            //     recordNumber: this.recordNumber,
-            //     name: this.name,
-            //     eventType: this.eventType,
-            //     dateFrom: this.dateFrom,
-            //     dateTo: this.dateTo,
-            //     numAttendees: this.numAttendees,
-            //     selectedPreferences: this.selectedPreferences,
-            //     expectedBudget: this.expectedBudget
-            // });
-            // this.$emit('invokeFunction');
         }
     }
 

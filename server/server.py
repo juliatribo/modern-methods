@@ -31,9 +31,11 @@ def get_data(record_id):
 @app.route('/add_event', methods=['POST'])
 def add_data():
     print("Running add data  ")
+    print("data", request.get_json())
     request_data = request.get_json()
     response = process_add_event(request_data)
     return jsonify(response)
+
 
 
 @app.route('/get_finance_data', methods=['GET'])

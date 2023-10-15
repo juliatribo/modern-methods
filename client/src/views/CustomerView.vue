@@ -55,6 +55,23 @@
                 <label for="expectedBudget">Expected Budget:</label>
                 <div>{{ expectedBudget }}</div>
                 </div>
+                <div class="approval-field">
+                    <label for="scs-approval">SCS Approval</label>
+                    <input type="checkbox" v-model="scsStatus">
+                </div>
+
+                <div class="approval-field">
+                    <label for="admin-approval">Admin Manager Approval</label>
+                    <input type="checkbox" v-model="adminStatus">
+                </div>
+
+                <div class="approval-field">
+                    <label for="finance-report">Finance Report Submitted</label>
+                    <input type="checkbox" v-model="financeStatus">
+                </div>
+                <button @click="updateData">Submit status</button>
+
+
             </div>
             </form>
         </div>
@@ -80,10 +97,29 @@ export default {
             financialData: {},
             showData: false,
             recordNumberToGet:null,
-            show:true
+            show:true,
+            scsStatus:false,
+            adminStatus:false,
+            financeStatus:false
         }
     },
     methods: {
+        updateData(){
+            let mydata = {
+                recordNumber: this.recordNumber,
+                name: this.name,
+                eventType: this.eventType,
+                dateFrom: this.dateFrom,
+                dateTo: this.dateTo,
+                numAttendees: this.numAttendees,
+                selectedPreferences: this.selectedPreferences,
+                expectedBudget: this.expectedBudget,
+                scsStatus: this.scsStatus,
+                adminStatus: this.adminStatus,
+                financeStatus: this.financeStatus
+            };
+            this.saveData(mydata);
+        },
         getEventData(){
             
             fetch('http://127.0.0.1:6002/get_event_data/' + this.recordNumberToGet, {
@@ -144,6 +180,8 @@ export default {
 </script>
 
 <style scoped>
+
+
 .event-form {
     margin: 20px;
     padding: 20px;
@@ -197,6 +235,18 @@ export default {
 
 .selected-preferences li {
   margin-bottom: 5px;
+}
+.approval-field {
+      margin: 10px 0;
+    }
+
+.approval-field label {
+    padding-right: 10px; /* Adjust the value to control the spacing */
+  }
+
+.approval-field input[type="checkbox"] {
+    margin-right: 5px; /* Small space between checkbox and label */
+    transform: scale(1.2);
 }
 </style>
 

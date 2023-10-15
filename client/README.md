@@ -2,7 +2,9 @@
 
 ## Project setup
 ```
-npm install
+npm install 
+or
+npm install vue@2
 ```
 
 ### Compiles and hot-reloads for development

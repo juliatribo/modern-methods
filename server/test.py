@@ -11,3 +11,5 @@ def test_process_add_data():
                 "selectedPreferences": [],
                 "expectedBudget": 3000}
     process_add_event(request)
+
+test_process_add_data()

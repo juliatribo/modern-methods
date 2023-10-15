@@ -9,7 +9,8 @@ app.config['CORS_HEADERS'] = 'Content-Type'
 
 
 def process_add_event(request: Dict):
-    with open("data/event.json", "w") as f:
+    record_id = request["recordNumber"]
+    with open(f"data/event_requests/event_{record_id}.json", "w") as f:
         json.dump(request, f)
     return {"status": "ok"}
 
@@ -19,11 +20,10 @@ def process_add_finance_report(request: Dict):
         json.dump(request, f)
     return {"status": "ok"}
 
-
-@app.route('/get_event_data', methods=['GET'])
 @cross_origin()
-def get_data():
-    with open("data/event.json", "r") as f:
+@app.route('/get_event_data/<int:record_id>', methods=['GET'])
+def get_data(record_id):
+    with open(f"data/event_requests/event_{record_id}.json", "r") as f:
         event = json.load(f)
     return jsonify(event)
 

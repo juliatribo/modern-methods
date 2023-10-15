@@ -2,9 +2,60 @@
     <div>
         <HeaderComponent />
         <div class="container mt-5">
-            <button @click="showForm = true" v-if="!showForm" class="btn btn-primary mb-3">Create Event Form</button>
-            <form v-if="showForm">
-                <EventFormComponent @saveEventData="(options)=>saveData(options)" />
+            <div v-if="show">
+                <button @click="showForm=true" v-if="!showForm" class="btn btn-primary mb-3">Create Event Form</button>
+                <form v-if="showForm">
+                    <EventFormComponent @saveEventData="(options)=>saveData(options)" />
+                </form>
+                <div  v-if="!showForm">
+                    <label for="Insert record ID">Record Number:</label>
+                    <input type="text" class="form-control" v-model="recordNumberToGet">
+                    <button @click="getEventData"  class="btn btn-primary mb-3">Get Event</button>
+            </div>
+            </div>
+            <form v-if="showData">
+                <div>
+                <div class="form-group">
+                <label for="recordNumber">Record Number:</label>
+                <div>{{ recordNumber }}</div>
+                </div>
+                <div class="form-group">
+                <label for="clientName">Client Name:</label>
+                <div>{{ name }}</div>
+                </div>
+                <div class="form-group">
+                <label for="eventType">Event Type:</label>
+                <div>{{ eventType }}</div>
+                </div>
+                <div class="form-group">
+                <label for="dateFrom">From:</label>
+                <div>{{ dateFrom }}</div>
+                </div>
+                <div class="form-group">
+                <label for="dateTo">To:</label>
+                <div>{{ dateTo }}</div>
+                </div>
+                <div class="form-group">
+                <label for="attendees">Expected Number of Attendees:</label>
+                <div>{{ numAttendees }}</div>
+                </div>
+                <div class="form-group">
+                <label for="preferences">Preferences:</label>
+                <div>
+                    <div v-for="preference in selectedPreferences" :key="preference">{{ preference }}</div>
+                </div>
+                </div>
+                <div v-if="selectedPreferences.length !== 0">
+                Selected Preferences:
+                <ul>
+                    <li v-for="selectedPreference in selectedPreferences" :key="selectedPreference">{{ selectedPreference }}</li>
+                </ul>
+                </div>
+                <div class="form-group">
+                <label for="expectedBudget">Expected Budget:</label>
+                <div>{{ expectedBudget }}</div>
+                </div>
+            </div>
             </form>
         </div>
     </div>
@@ -26,10 +77,45 @@ export default {
             numAttendees: null,
             selectedPreferences: [],
             expectedBudget: null,
-            financialData: {}
+            financialData: {},
+            showData: false,
+            recordNumberToGet:null,
+            show:true
         }
     },
     methods: {
+        getEventData(){
+            
+            fetch('http://127.0.0.1:6002/get_event_data/' + this.recordNumberToGet, {
+                method: "GET",
+                headers: {
+                'Content-Type': 'application/json'
+                }
+            })
+                .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                    return response.json(); // Parse the response as JSON
+                })
+                .then(data => {
+                // Access the parsed JSON data here
+                    console.log(data);
+                    this.recordNumber=data.recordNumber;
+                    this.name = data.name;
+                    this.eventType = data.eventType;
+                    this.dateFrom = data.dateFrom;
+                    this.dateTo = data.dateTo;
+                    this.showData = true;
+                    this.show=false;
+                    this.numAttendees = data.numAttendees;
+                    this.selectedPreferences = data.selectedPreferences;
+                    this.expectedBudget = data.expectedBudget;
+                })
+                .catch(error => {
+                console.error('There was a problem with the fetch operation:', error);
+                });
+        },
         saveData(data) {
             const fetchResult = fetch('http://127.0.0.1:6002/add_event', {
                 method: "POST",
@@ -39,6 +125,7 @@ export default {
                 }
             })
             console.log(fetchResult)
+        
 
         },
         handleFinancialData(data) {
@@ -93,6 +180,23 @@ export default {
 
 .btn:hover {
     background-color: #0056b3;
+}
+
+.value {
+  background-color: #f9f9f9;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+.selected-preferences {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.selected-preferences li {
+  margin-bottom: 5px;
 }
 </style>
 

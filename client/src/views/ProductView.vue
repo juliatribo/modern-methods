@@ -4,7 +4,7 @@
         <div class="container mt-5">
             <button @click="showForm = true" v-if="!showForm" class="btn btn-primary mb-3">Create Financial Request</button>
             <form v-if="showForm">
-                <FinancialRequestComponent />
+                <FinancialRequestComponent v-model="projectReference" />
             </form>
         </div>
     </div>

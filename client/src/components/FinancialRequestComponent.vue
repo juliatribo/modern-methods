@@ -5,14 +5,13 @@
                 <label for="department">Requesting department:</label>
                 <div>
                     <div class="form-check">
-                        <input type="checkbox" class="form-check-input" id="prod" name="preferences">
+                        <input type="radio" class="form-check-input" id="prod" name="department" value="Production">
                         <label class="form-check-label" for="prod">Production</label>
                     </div>
                     <div class="form-check">
-                        <input type="checkbox" class="form-check-input" id="financial" name="preferences">
+                        <input type="radio" class="form-check-input" id="financial" name="department" value="Financial">
                         <label class="form-check-label" for="financial">Financial</label>
                     </div>
-
                 </div>
             </div>
             <div class="form-group">
@@ -22,38 +21,15 @@
                 </div>
             </div>
             <div class="form-group">
-                <label for="clientName">Client Name:</label>
+                <label for="requiredAmount">Required Amount:</label>
                 <div>
-                    <input type="text" class="form-control" name="clientName">
+                    <input type="text" class="form-control" id="requiredAmount" name="requiredAmount">
                 </div>
             </div>
             <div class="form-group">
-                <label for="eventType">Event Type:</label>
+                <label for="reason">Reason:</label>
                 <div>
-                    <input type="text" class="form-control" name="eventType">
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="dateFrom">From:</label>
-                <div>
-                    <input type="date" class="form-control" id="dateFrom" name="dateFrom">
-                </div>
-                <label for="dateTo">To:</label>
-                <div>
-                    <input type="date" class="form-control" id="dateTo" name="dateTo">
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="attendees">Expected Number of Attendees:</label>
-                <div>
-                    <input type="number" class="form-control" id="attendees" name="attendees">
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label for="expectedBudget">Expected Budget:</label>
-                <div>
-                    <input type="text" class="form-control" id="expectedBudget" name="expectedBudget">
+                    <input type="text" class="form-control" id="reason" name="reason">
                 </div>
             </div>
             <div class="form-group">

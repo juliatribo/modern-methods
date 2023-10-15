@@ -1,9 +1,11 @@
 import json
 from typing import Dict
-
+from flask_cors import CORS, cross_origin
 from flask import Flask, request, jsonify
 
 app = Flask(__name__)
+cors = CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
 
 
 def process_add_event(request: Dict):
@@ -12,7 +14,14 @@ def process_add_event(request: Dict):
     return {"status": "ok"}
 
 
+def process_add_finance_report(request: Dict):
+    with open("data/finance_req.json", "w") as f:
+        json.dump(request, f)
+    return {"status": "ok"}
+
+
 @app.route('/get_event_data', methods=['GET'])
+@cross_origin()
 def get_data():
     with open("data/event.json", "r") as f:
         event = json.load(f)
@@ -21,8 +30,25 @@ def get_data():
 
 @app.route('/add_event', methods=['POST'])
 def add_data():
+    print("Running add data  ")
     request_data = request.get_json()
     response = process_add_event(request_data)
+    return jsonify(response)
+
+
+@app.route('/get_finance_data', methods=['GET'])
+@cross_origin()
+def get_finance_data():
+    with open("data/finance_req.json", "r") as f:
+        event = json.load(f)
+    return jsonify(event)
+
+
+@app.route('/add_finance_report', methods=['POST'])
+def add_finance_data():
+    print("Running add data")
+    request_data = request.get_json()
+    response = process_add_finance_report(request_data)
     return jsonify(response)
 
 

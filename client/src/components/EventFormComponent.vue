@@ -3,7 +3,7 @@
         <div class="form-group">
             <label for="recordNumber">Record Number:</label>
             <div>
-                <input type="text" class="form-control" id="recordNumber" name="recordNumber">
+                <input type="text" class="form-control" id="recordNumber" name="recordNumber" v-model="recordNumber">
             </div>
         </div>
         <div class="form-group">
@@ -137,7 +137,7 @@ export default {
     },
     methods: {
         saveData() {
-            this.$emit('financialData', {
+            this.$emit("saveEventData", {
                 recordNumber: this.recordNumber,
                 name: this.name,
                 eventType: this.eventType,
@@ -147,7 +147,17 @@ export default {
                 selectedPreferences: this.selectedPreferences,
                 expectedBudget: this.expectedBudget
             });
-            this.$emit('invokeFunction');
+            // this.$emit('financialData', {
+            //     recordNumber: this.recordNumber,
+            //     name: this.name,
+            //     eventType: this.eventType,
+            //     dateFrom: this.dateFrom,
+            //     dateTo: this.dateTo,
+            //     numAttendees: this.numAttendees,
+            //     selectedPreferences: this.selectedPreferences,
+            //     expectedBudget: this.expectedBudget
+            // });
+            // this.$emit('invokeFunction');
         }
     }
 

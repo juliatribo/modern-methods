@@ -4,7 +4,7 @@
         <div class="container mt-5">
             <button @click="showForm = true" v-if="!showForm" class="btn btn-primary mb-3">Create Event Form</button>
             <form v-if="showForm">
-                <EventFormComponent @financialData="handleFinancialData" @invokeFunction="saveData" />
+                <EventFormComponent @saveEventData="(options)=>saveData(options)" />
             </form>
         </div>
     </div>
@@ -30,18 +30,7 @@ export default {
         }
     },
     methods: {
-        saveData() {
-            const data = {
-                recordNumber: this.recordNumber,
-                name: this.name,
-                eventType: this.eventType,
-                dateFrom: this.dateFrom,
-                dateTo: this.dateTo,
-                numAttendees: this.numAttendees,
-                selectedPreferences: this.selectedPreferences,
-                expectedBudget: this.expectedBudget
-            };
-
+        saveData(data) {
             const fetchResult = fetch('http://127.0.0.1:6002/add_event', {
                 method: "POST",
                 body: JSON.stringify(data, null, 2),

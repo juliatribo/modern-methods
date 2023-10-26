@@ -6,6 +6,7 @@ import ProductView from '../views/ProductView.vue';
 import ServiceView from '../views/ServiceView.vue';
 import CustomerView from '../views/CustomerView.vue';
 import AdminManagerView from '../views/AdminManagerView';
+import HRView from '../views/HRView';
 
 Vue.use(VueRouter);
 
@@ -39,6 +40,11 @@ const routes = [
         path: '/administration',
         name: 'AdminManagerView',
         component: AdminManagerView
+    },
+    {
+        path: '/human-resources',
+        name: 'HRView',
+        component: HRView
     }
 ];
 

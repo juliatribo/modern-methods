@@ -60,6 +60,9 @@ export default {
                 else if (userFound.department =="administration"){
                     this.$router.push('administration')
                 }
+                else if (userFound.department =="human-resources"){
+                    this.$router.push('human-resources')
+                }
                 else {
                     this.$router.push('product');
                 }

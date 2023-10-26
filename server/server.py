@@ -8,12 +8,22 @@ cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
 
 
+def decode_department(department):
+    if department=="HR" or department=="humanResources":
+        return "human_resources"
+
 def process_add_event(request: Dict):
     record_id = request["recordNumber"]
     with open(f"data/event_requests/event_{record_id}.json", "w") as f:
         json.dump(request, f)
     return {"status": "ok"}
 
+def process_add_task(request: Dict):
+    task_id = request["taskID"]
+    department = decode_department(request["department"])
+    with open(f"data/tasks/{department}/task_{task_id}.json", "w") as f:
+        json.dump(request, f)
+    return {"status": "ok"}
 
 def process_add_finance_report(request: Dict):
     with open("data/finance_req.json", "w") as f:
@@ -36,7 +46,13 @@ def add_data():
     response = process_add_event(request_data)
     return jsonify(response)
 
-
+@app.route('/add_task', methods=['POST'])
+def add_task():
+    print("Running add task")
+    print("task", request.get_json())
+    request_data = request.get_json()
+    response = process_add_task(request_data)
+    return jsonify(response)
 
 @app.route('/get_finance_data', methods=['GET'])
 @cross_origin()

@@ -145,7 +145,10 @@ export default {
                 dateTo: this.dateTo,
                 numAttendees: this.numAttendees,
                 selectedPreferences: this.selectedPreferences,
-                expectedBudget: this.expectedBudget
+                expectedBudget: this.expectedBudget,
+                scsStatus:false,
+                adminStatus:false,
+                financeStatus:false
             });
         }
     }

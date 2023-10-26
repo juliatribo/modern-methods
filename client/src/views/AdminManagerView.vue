@@ -1,19 +1,12 @@
 <template>
     <div>
         <HeaderComponent />
-        <div class="container mt-5">
-            <div v-if="show">
-                <button @click="showForm=true" v-if="!showForm" class="btn btn-primary mb-3">Create Event Form</button>
-                <form v-if="showForm">
-                    <EventFormComponent @saveEventData="(options)=>saveData(options)" />
-                </form>
-                <div  v-if="!showForm">
-                    <label for="Insert record ID">Record Number:</label>
-                    <input type="text" class="form-control" v-model="recordNumberToGet">
-                    <button @click="getEventData"  class="btn btn-primary mb-3">Get Event</button>
-                </div>
-            </div>
-            <form v-if="showData">
+        <div v-if="!showData">
+            <label for="Insert record ID">Record Number:</label>
+            <input type="text" class="form-control" v-model="recordNumberToGet">
+            <button @click="getEventData"  class="btn btn-primary mb-3">Get Event</button>
+        </div>
+        <form v-if="showData">
                 <div>
                 <div class="form-group">
                 <label for="recordNumber">Record Number:</label>
@@ -73,19 +66,19 @@
 
 
             </div>
-            </form>
-        </div>
+        </form>
     </div>
 </template>
-  
+
 <script>
-import EventFormComponent from '../components/EventFormComponent.vue';
+import HeaderComponent from '../components/HeaderComponent.vue';
 export default {
-    name: "CustomerView",
+    name: "AdminManagerView",
+    components: {
+        HeaderComponent
+    },
     data: function () {
         return {
-            showForm: false,
-            showEvent: false,
             recordNumber: "",
             name: "",
             eventType: "",
@@ -120,8 +113,18 @@ export default {
             };
             this.saveData(mydata);
         },
+        saveData(data) {
+            const fetchResult = fetch('http://127.0.0.1:6002/add_event', {
+                method: "POST",
+                body: JSON.stringify(data, null, 2),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            console.log(fetchResult)
+
+        },
         getEventData(){
-            
             fetch('http://127.0.0.1:6002/get_event_data/' + this.recordNumberToGet, {
                 method: "GET",
                 headers: {
@@ -154,103 +157,12 @@ export default {
                     console.error('There was a problem with the fetch operation:', error);
                 });
         },
-        saveData(data) {
-            const fetchResult = fetch('http://127.0.0.1:6002/add_event', {
-                method: "POST",
-                body: JSON.stringify(data, null, 2),
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            })
-            console.log(fetchResult)
-        
-
-        },
-        handleFinancialData(data) {
-            this.financialData = data;
-        }
-
-    },
-    components: {
-        EventFormComponent
     }
 }
-
-
-
 
 </script>
 
-<style scoped>
+<style>
 
-
-.event-form {
-    margin: 20px;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #f9f9f9;
-    max-width: 600px;
-    margin: 0 auto;
-}
-
-.form-group {
-    margin-bottom: 20px;
-}
-
-.label {
-    font-weight: bold;
-}
-
-.input {
-    width: 100%;
-    padding: 5px;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-}
-
-.btn {
-    background-color: #007BFF;
-    color: #fff;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 3px;
-    cursor: pointer;
-}
-
-.btn:hover {
-    background-color: #0056b3;
-}
-
-.value {
-  background-color: #f9f9f9;
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 3px;
-}
-
-.selected-preferences {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.selected-preferences li {
-  margin-bottom: 5px;
-}
-.approval-field {
-      margin: 10px 0;
-    }
-
-.approval-field label {
-    padding-right: 10px; /* Adjust the value to control the spacing */
-  }
-
-.approval-field input[type="checkbox"] {
-    margin-right: 5px; /* Small space between checkbox and label */
-    transform: scale(1.2);
-}
 </style>
-
-
 

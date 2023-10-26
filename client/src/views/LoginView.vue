@@ -57,6 +57,9 @@ export default {
                 else if (userFound.department == "customer") {
                     this.$router.push('customer');
                 }
+                else if (userFound.department =="administration"){
+                    this.$router.push('administration')
+                }
                 else {
                     this.$router.push('product');
                 }

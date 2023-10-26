@@ -50,18 +50,18 @@
                 </div>
                 <div class="approval-field">
                     <label for="scs-approval">SCS Approval</label>
-                    <input type="checkbox" v-model="scsStatus">
+                    <input type="checkbox" v-model="scsStatus" disabled>
                 </div>
-
+                <div class="approval-field">
+                    <label for="finance-report">Finance Report Submitted</label>
+                    <input type="checkbox" v-model="financeStatus" disabled>
+                </div>
                 <div class="approval-field">
                     <label for="admin-approval">Admin Manager Approval</label>
                     <input type="checkbox" v-model="adminStatus">
                 </div>
 
-                <div class="approval-field">
-                    <label for="finance-report">Finance Report Submitted</label>
-                    <input type="checkbox" v-model="financeStatus">
-                </div>
+
                 <button @click="updateData">Submit status</button>
 
 

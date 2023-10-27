@@ -11,6 +11,31 @@
             "department": "finance"
         },
         {
+            "user": "fin",
+            "password": "fin",
+            "department": "finance"
+        },
+        {
+            "user": "prod",
+            "password": "prod",
+            "department": "product"
+        },
+        {
+            "user": "serv",
+            "password": "serv",
+            "department": "service"
+        },
+        {
+            "user": "photo",
+            "password": "photo",
+            "department": "photography"
+        },
+        {
+            "user": "chef",
+            "password": "chef",
+            "department": "chef"
+        },
+        {
             "user": "maria@event.product.com",
             "password": "password2",
             "department": "product"
@@ -19,7 +44,7 @@
             "user": "laura@event.service.com",
             "password": "password3",
             "department": "service"
-        },  
+        },
         {
             "user": "julia",
             "password": "julia",

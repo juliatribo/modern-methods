@@ -9,14 +9,16 @@ app.config['CORS_HEADERS'] = 'Content-Type'
 
 
 def decode_department(department):
-    if department=="HR" or department=="humanResources":
+    if department == "HR" or department == "humanResources":
         return "human_resources"
+
 
 def process_add_event(request: Dict):
     record_id = request["recordNumber"]
     with open(f"data/event_requests/event_{record_id}.json", "w") as f:
         json.dump(request, f)
     return {"status": "ok"}
+
 
 def process_add_task(request: Dict):
     task_id = request["taskID"]
@@ -25,10 +27,56 @@ def process_add_task(request: Dict):
         json.dump(request, f)
     return {"status": "ok"}
 
-def process_add_finance_report(request: Dict):
-    with open("data/finance_req.json", "w") as f:
-        json.dump(request, f)
+
+def process_add_finance_report(new_data):
+    filename = 'data/finance_req.json'
+    with open(filename, 'r+') as file:
+        file_data = json.load(file)
+        file_data["fin_requests"].append(new_data)
+        file.seek(0)
+        json.dump(file_data, file, indent=4)
     return {"status": "ok"}
+
+
+def process_add_accepted_req(new_data):
+    filename = 'data/finance_req_acc.json'
+    with open(filename, 'r+') as file:
+        file_data = json.load(file)
+        file_data["acc_requests"].append(new_data)
+        file.seek(0)
+        json.dump(file_data, file, indent=4)
+    return {"status": "ok"}
+
+
+def process_add_denied_req(new_data):
+    filename = 'data/finance_req_den.json'
+    with open(filename, 'r+') as file:
+        file_data = json.load(file)
+        file_data["den_requests"].append(new_data)
+        file.seek(0)
+        json.dump(file_data, file, indent=4)
+    return {"status": "ok"}
+
+
+def process_add_product_task(new_data):
+    filename = 'data/task_prod.json'
+    with open(filename, 'r+') as file:
+        file_data = json.load(file)
+        file_data["prod_tasks"].append(new_data)
+        file.seek(0)
+        json.dump(file_data, file, indent=4)
+    return {"status": "ok"}
+
+
+def process_add_serv_task(new_data):
+    filename = 'data/task_serv.json'
+    with open(filename, 'r+') as file:
+        file_data = json.load(file)
+        file_data["serv_tasks"].append(new_data)
+        file.seek(0)
+        json.dump(file_data, file, indent=4)
+    return {"status": "ok"}
+
 
 @cross_origin()
 @app.route('/get_event_data/<int:record_id>', methods=['GET'])
@@ -46,6 +94,7 @@ def add_data():
     response = process_add_event(request_data)
     return jsonify(response)
 
+
 @app.route('/add_task', methods=['POST'])
 def add_task():
     print("Running add task")
@@ -53,6 +102,7 @@ def add_task():
     request_data = request.get_json()
     response = process_add_task(request_data)
     return jsonify(response)
+
 
 @app.route('/get_finance_data', methods=['GET'])
 @cross_origin()
@@ -68,6 +118,81 @@ def add_finance_data():
     request_data = request.get_json()
     response = process_add_finance_report(request_data)
     return jsonify(response)
+
+
+@app.route('/get_finance_accepted', methods=['GET'])
+@cross_origin()
+def get_finance_accepted_data():
+    with open("data/finance_req_acc.json", "r") as f:
+        event = json.load(f)
+    return jsonify(event)
+
+
+@app.route('/add_accepted_req', methods=['POST'])
+def add_accepted_fin_data():
+    print("Running add data")
+    request_data = request.get_json()
+    response = process_add_accepted_req(request_data)
+    return jsonify(response)
+
+
+@app.route('/get_finance_denied', methods=['GET'])
+@cross_origin()
+def get_finance_denied_data():
+    with open("data/finance_req_den.json", "r") as f:
+        event = json.load(f)
+    return jsonify(event)
+
+
+@app.route('/add_denied_req', methods=['POST'])
+def add_denied_fin_finance_data():
+    print("Running add data")
+    request_data = request.get_json()
+    response = process_add_denied_req(request_data)
+    return jsonify(response)
+
+
+@app.route('/delete_finance_component/<key_to_delete>', methods=['DELETE'])
+def delete_finance_component(key_to_delete):
+    try:
+        with open("data/finance_req.json", "r") as f:
+            data = json.load(f)
+
+        for item in data['fin_requests']:
+            if item.get('projectReference') == int(key_to_delete):
+                data['fin_requests'].remove(item)
+                with open("data/finance_req.json", "w") as f:
+                    json.dump(data, f, indent=4)
+                return jsonify({'message': f'Successfully deleted {key_to_delete}'}), 200
+
+        return jsonify({'error': f'Key {key_to_delete} not found'}), 404
+
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+
+@app.route('/add_product_task', methods=['POST'])
+def add_product_task():
+    print("Running add data")
+    request_data = request.get_json()
+    response = process_add_product_task(request_data)
+    return jsonify(response)
+
+
+@app.route('/add_service_task', methods=['POST'])
+def add_service_task():
+    print("Running add data")
+    request_data = request.get_json()
+    response = process_add_serv_task(request_data)
+    return jsonify(response)
+
+
+@app.route('/get_prod_tasks', methods=['GET'])
+@cross_origin()
+def get_task_prod():
+    with open("data/task_prod.json", "r") as f:
+        event = json.load(f)
+    return jsonify(event)
 
 
 # Press the green button in the gutter to run the script.

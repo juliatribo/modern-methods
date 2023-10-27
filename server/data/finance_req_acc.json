@@ -1,0 +1,22 @@
+{
+    "acc_requests": [
+        {
+            "projectReference": 7445,
+            "reason": "need money",
+            "requiredAmount": "222",
+            "selectedDepartment": "Production"
+        },
+        {
+            "projectReference": 3246,
+            "reason": "need onions",
+            "requiredAmount": "555",
+            "selectedDepartment": "Service"
+        },
+        {
+            "projectReference": 3246,
+            "reason": "need onions",
+            "requiredAmount": "555",
+            "selectedDepartment": "Service"
+        }
+    ]
+}

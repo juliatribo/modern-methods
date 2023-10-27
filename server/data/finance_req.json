@@ -1,0 +1,22 @@
+{
+    "fin_requests": [
+        {
+            "selectedDepartment": "Production",
+            "projectReference": 7445,
+            "requiredAmount": "222",
+            "reason": "need money"
+        },
+        {
+            "selectedDepartment": "Production",
+            "projectReference": 697,
+            "requiredAmount": "222",
+            "reason": "need more money"
+        },
+        {
+            "selectedDepartment": "Production",
+            "projectReference": "12344",
+            "requiredAmount": "222",
+            "reason": "give me moneeey"
+        }
+    ]
+}

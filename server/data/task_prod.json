@@ -1,0 +1,22 @@
+{
+    "prod_tasks": [
+        {
+            "projectReferenceTask": "1234",
+            "descriptionTask": "More passion",
+            "assignTo": "Photography",
+            "prio": "Low"
+        },
+        {
+            "projectReferenceTask": "1234566",
+            "descriptionTask": "B&W",
+            "assignTo": "Photography",
+            "prio": "Low"
+        },
+        {
+            "projectReferenceTask": "123456678",
+            "descriptionTask": "Color",
+            "assignTo": "Photography",
+            "prio": "High"
+        }
+    ]
+}

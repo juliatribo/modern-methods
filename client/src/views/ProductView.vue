@@ -28,9 +28,13 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <div>
+                        <div class="buttons">
                             <button type="submit" class="btn btn-primary" @click="updateData">
                                 Submit
+                            </button>
+
+                            <button type="submit" class="btn btn-primary" @click="showForm = false">
+                                Cancel
                             </button>
                         </div>
                     </div>
@@ -67,18 +71,19 @@
                     </b-dropdown>
                 </div>
                 <div class="form-group">
-                    <div>
+                    <div class="buttons">
                         <button type="submit" class="btn btn-primary" @click="updateTask">
                             Submit
+                        </button>
+                        <button type="submit" class="btn btn-primary" @click="showTask = false">
+                            Cancel
                         </button>
                     </div>
                 </div>
 
             </form>
-
-
             <div class="boxes-container">
-                <div class="sliding-box">
+                <div class="sliding-box with-scroll">
                     <h4>Accepted Financial Requests</h4>
                     <div v-for="(report, index) in acceptedReq" :key="index" class="slide">
                         <div class="content">
@@ -88,7 +93,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="sliding-box">
+                <div class="horizontal-divider"></div>
+
+                <div class="sliding-box with-scroll">
                     <h4>Denied Financial Requests</h4>
                     <div v-for="(report, index) in deniedReq" :key="index" class="slide">
                         <div class="content">
@@ -96,6 +103,18 @@
                             <p><strong>Required Amount:</strong> {{ report.requiredAmount }}</p>
                             <p><strong>Reason:</strong> {{ report.reason }}</p>
                         </div>
+                    </div>
+                </div>
+            </div>
+            <div class="sliding-box with-scroll">
+                <h4>Tasks Feedback</h4>
+                <div v-for="(report, index) in finishedTasks" :key="index" class="slide">
+                    <div class="content">
+                        <p><strong>Project Reference:</strong> {{ report.projectReferenceTask }}</p>
+                        <p><strong>Description:</strong> {{ report.descriptionTask }}</p>
+                        <p><strong>Assigned to:</strong> {{ report.assignTo }}</p>
+                        <p><strong>Priority:</strong> {{ report.prio }}</p>
+                        <p><strong>Comment:</strong> {{ report.comment }}</p>
                     </div>
                 </div>
             </div>
@@ -120,13 +139,16 @@ export default {
             projectReferenceTask: null,
             descriptionTask: "",
             assignTo: "",
-            prio: ""
+            prio: "",
+            comment: "",
+            finishedTasks: []
 
         }
     },
     mounted() {
         this.getAcceptedReq();
         this.getDeniedReq();
+        this.getFinishedTasks();
     },
     methods: {
         async getAcceptedReq() {
@@ -149,6 +171,18 @@ export default {
                 }
                 const data = await response.json();
                 this.deniedReq = data.den_requests.filter((report) => report.selectedDepartment === "Production");
+            } catch (error) {
+                console.error('Error fetching finance reports:', error);
+            }
+        },
+        async getFinishedTasks() {
+            try {
+                const response = await fetch('http://127.0.0.1:6002/get_prod_tasks');
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                const data = await response.json();
+                this.finishedTasks = data.prod_tasks.filter((report) => report.comment !== "");
             } catch (error) {
                 console.error('Error fetching finance reports:', error);
             }
@@ -179,7 +213,8 @@ export default {
                 projectReferenceTask: this.projectReferenceTask,
                 descriptionTask: this.descriptionTask,
                 assignTo: this.assignTo,
-                prio: this.prio
+                prio: this.prio,
+                comment: this.comment
             };
             this.saveTask(mydata);
         },
@@ -223,29 +258,24 @@ export default {
     margin-top: 20px;
 }
 
-.sliding-box {
-    flex: 1;
-    width: 45%;
-    margin-right: 20px;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #f9f9f9;
+.sliding-box.with-scroll {
+    height: 100px;
+    /* Set the desired height */
+    overflow-y: auto;
+    /* Enable vertical scrollbar */
+    border: 1px solid #bababaea;
 }
 
-.slides {
-    display: flex;
-    flex-direction: column;
+.content-container {
+    width: 100%;
+    /* Adjust width as needed */
 }
 
+/* Adjust the following styles as needed */
 .slide {
-    margin: 10px;
+    margin-bottom: 15px;
     padding: 10px;
-    border: 1px solid #e1e1e1;
-    border-radius: 5px;
-    background-color: #ffffff;
-    display: flex;
-    justify-content: space-between;
+    border: 1px solid #000000;
 }
 
 .button-container {
@@ -255,5 +285,17 @@ export default {
 /* Adjusted styles */
 button {
     margin-right: 20px;
+}
+
+.horizontal-divider {
+    width: 2%;
+    height: 1px;
+    background-color: #ffffff;
+    /* Or your preferred color */
+    margin: 10px 0;
+}
+
+.buttons button {
+    margin-left: 10px;
 }
 </style>

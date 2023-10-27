@@ -3,14 +3,19 @@
         <HeaderComponent />
         <div class="sliding-box">
             <h4>Tasks</h4>
-            <div class="slides">
+            <div class="sliding-box with-scroll">
                 <div v-for="(report, index) in tasks" :key="index" class="slide">
                     <div class="content">
                         <p><strong>Project Reference:</strong> {{ report.projectReferenceTask }}</p>
                         <p><strong>Description:</strong> {{ report.descriptionTask }}</p>
                         <p><strong>Priority:</strong> {{ report.prio }}</p>
-                        <div>
-                            <button class="btn btn-success" @click="Comment(index)">Add comment</button>
+                        <div class="form-group">
+                            <p><strong>Comment:</strong> </p>
+                            <div>
+                                <input type="text" class="form-control" id="textBox" name="textBox"
+                                    v-model="report.comment">
+                            </div>
+                            <button @click="submitData(index, report.comment)" class="btn btn-primary mt-3">Submit</button>
                         </div>
                     </div>
                 </div>
@@ -39,11 +44,30 @@ export default {
                     throw new Error('Network response was not ok');
                 }
                 const data = await response.json();
-                this.tasks = data.prod_tasks;
+                this.tasks = data.prod_tasks.filter((report) => report.comment === "");
             } catch (error) {
                 console.error('Error fetching finance reports:', error);
             }
         },
+        submitData(index, comment) {
+            let mydata = {
+                projectReferenceTask: this.tasks[index].projectReferenceTask,
+                descriptionTask: this.tasks[index].descriptionTask,
+                assignTo: this.tasks[index].assignTo,
+                prio: this.tasks[index].prio,
+                comment: comment
+            };
+            const fetchResult = fetch('http://127.0.0.1:6002/edit_prod_task', {
+                method: "POST",
+                body: JSON.stringify(mydata, null, 2),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            console.log(fetchResult)
+            window.location.reload()
+
+        }
 
     },
     components: {
@@ -52,29 +76,24 @@ export default {
 }
 </script>
 <style>
-.sliding-box {
-    width: 80%;
-    max-width: 800px;
-    margin: 20px auto;
-    background-color: #f5f5f5;
-    padding: 20px;
-    border-radius: 10px;
+.sliding-box.with-scroll {
+    height: 500px;
+    /* Set the desired height */
+    overflow-y: auto;
+    /* Enable vertical scrollbar */
+    margin-top: 5px;
+    /* Adjust margin-top as needed */
 }
 
-.slides {
-    display: flex;
-    flex-direction: column;
+.content-container {
+    width: 100%;
+    /* Adjust width as needed */
 }
 
 .slide {
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    margin: 10px;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #ffffff;
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #ddd;
 }
 
 .content {

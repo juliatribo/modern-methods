@@ -78,6 +78,19 @@ def process_add_serv_task(new_data):
     return {"status": "ok"}
 
 
+def edit_prod_task(new_data):
+    with open("data/task_prod.json", "r") as file:
+        data = json.load(file)
+        for task in data['prod_tasks']:
+            if task['projectReferenceTask'] == new_data.get('projectReferenceTask'):
+                # Update the specific task's comment
+                task['comment'] = new_data.get('comment')
+                break  # Exit loop once the task is found
+
+    with open("data/task_prod.json", "w") as file:
+        json.dump(data, file, indent=4)
+
+
 @cross_origin()
 @app.route('/get_event_data/<int:record_id>', methods=['GET'])
 def get_data(record_id):
@@ -193,6 +206,14 @@ def get_task_prod():
     with open("data/task_prod.json", "r") as f:
         event = json.load(f)
     return jsonify(event)
+
+
+@app.route('/edit_prod_task', methods=['POST'])
+def edit_task_prod():
+    request_data = request.get_json()
+    print(request_data)
+    edit_prod_task(request_data)
+    return jsonify({"status": "Comment edited successfully"})
 
 
 # Press the green button in the gutter to run the script.

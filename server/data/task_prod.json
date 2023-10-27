@@ -4,19 +4,29 @@
             "projectReferenceTask": "1234",
             "descriptionTask": "More passion",
             "assignTo": "Photography",
-            "prio": "Low"
+            "prio": "Low",
+            "comment": "done!"
         },
         {
             "projectReferenceTask": "1234566",
             "descriptionTask": "B&W",
             "assignTo": "Photography",
-            "prio": "Low"
+            "prio": "Low",
+            "comment": "need more money"
         },
         {
             "projectReferenceTask": "123456678",
             "descriptionTask": "Color",
             "assignTo": "Photography",
-            "prio": "High"
+            "prio": "High",
+            "comment": ""
+        },
+        {
+            "projectReferenceTask": null,
+            "descriptionTask": "",
+            "assignTo": "",
+            "prio": "",
+            "comment": ""
         }
     ]
 }

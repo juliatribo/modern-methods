@@ -82,12 +82,25 @@ def edit_prod_task(new_data):
     with open("data/task_prod.json", "r") as file:
         data = json.load(file)
         for task in data['prod_tasks']:
-            if task['projectReferenceTask'] == new_data.get('projectReferenceTask'):
+            if task['id'] == new_data.get('id'):
                 # Update the specific task's comment
                 task['comment'] = new_data.get('comment')
                 break  # Exit loop once the task is found
 
     with open("data/task_prod.json", "w") as file:
+        json.dump(data, file, indent=4)
+
+
+def edit_serv_task(new_data):
+    with open("data/task_serv.json", "r") as file:
+        data = json.load(file)
+        for task in data['serv_tasks']:
+            if task['id'] == new_data.get('id'):
+                # Update the specific task's comment
+                task['comment'] = new_data.get('comment')
+                break  # Exit loop once the task is found
+
+    with open("data/task_serv.json", "w") as file:
         json.dump(data, file, indent=4)
 
 
@@ -172,7 +185,7 @@ def delete_finance_component(key_to_delete):
             data = json.load(f)
 
         for item in data['fin_requests']:
-            if item.get('projectReference') == int(key_to_delete):
+            if item.get('id') == int(key_to_delete):
                 data['fin_requests'].remove(item)
                 with open("data/finance_req.json", "w") as f:
                     json.dump(data, f, indent=4)
@@ -208,11 +221,27 @@ def get_task_prod():
     return jsonify(event)
 
 
+@app.route('/get_serv_tasks', methods=['GET'])
+@cross_origin()
+def get_task_serv():
+    with open("data/task_serv.json", "r") as f:
+        event = json.load(f)
+    return jsonify(event)
+
+
 @app.route('/edit_prod_task', methods=['POST'])
 def edit_task_prod():
     request_data = request.get_json()
     print(request_data)
     edit_prod_task(request_data)
+    return jsonify({"status": "Comment edited successfully"})
+
+
+@app.route('/edit_serv_task', methods=['POST'])
+def edit_task_serv():
+    request_data = request.get_json()
+    print(request_data)
+    edit_serv_task(request_data)
     return jsonify({"status": "Comment edited successfully"})
 
 

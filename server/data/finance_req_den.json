@@ -1,16 +1,32 @@
 {
     "den_requests": [
         {
+            "id": 12350,
             "projectReference": 33,
             "reason": "need more money",
             "requiredAmount": "1000",
             "selectedDepartment": "Production"
         },
         {
+            "id": 12351,
             "projectReference": 33,
             "reason": "need more money",
             "requiredAmount": "1000",
             "selectedDepartment": "Production"
+        },
+        {
+            "id": 12352,
+            "projectReference": 11112,
+            "reason": "new oven",
+            "requiredAmount": "555",
+            "selectedDepartment": "Service"
+        },
+        {
+            "id": 12353,
+            "projectReference": 12344235,
+            "reason": "new pan",
+            "requiredAmount": "555",
+            "selectedDepartment": "Service"
         }
     ]
 }

@@ -1,3 +1,28 @@
 {
-    "serv_tasks": []
+    "serv_tasks": [
+        {
+            "id": 12340,
+            "projectReferenceTask": 1234566,
+            "descriptionTask": "gluten free options",
+            "assignTo": "Top chef",
+            "prio": "Medium",
+            "comment": "done!"
+        },
+        {
+            "id": 333875,
+            "projectReferenceTask": 1234512,
+            "descriptionTask": "less salt",
+            "assignTo": "Top chef",
+            "prio": "High",
+            "comment": ""
+        },
+        {
+            "id": 775479,
+            "projectReferenceTask": 12344545,
+            "descriptionTask": "tartar",
+            "assignTo": "Top chef",
+            "prio": "Medium",
+            "comment": "more money for salmon"
+        }
+    ]
 }

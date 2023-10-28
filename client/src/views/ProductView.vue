@@ -189,8 +189,9 @@ export default {
         },
         updateData() {
             let mydata = {
+                id: Math.floor(Math.random() * 1000000) + 1,
                 selectedDepartment: this.selectedDepartment,
-                projectReference: this.projectReference,
+                projectReference: parseInt(this.projectReference),
                 requiredAmount: this.requiredAmount,
                 reason: this.reason
             };
@@ -210,7 +211,8 @@ export default {
         },
         updateTask() {
             let mydata = {
-                projectReferenceTask: this.projectReferenceTask,
+                id: Math.floor(Math.random() * 1000000) + 1,
+                projectReferenceTask: parseInt(this.projectReferenceTask),
                 descriptionTask: this.descriptionTask,
                 assignTo: this.assignTo,
                 prio: this.prio,
@@ -229,9 +231,6 @@ export default {
             console.log(fetchResult)
 
 
-        },
-        handleFinancialData(data) {
-            this.financialData = data;
         },
         setPrioLow() {
             this.prio = "Low";

@@ -1,27 +1,27 @@
 <template>
     <div>
         <HeaderComponent />
-        <div class="sliding-box">
+
+        <div class="sliding-box with-scroll">
             <h4>Financial Requests</h4>
-            <div class="sliding-box with-scroll">
-                <div v-for="(report, index) in financeReports" :key="index" class="slide">
-                    <div class="content">
-                        <p><strong>Selected Department:</strong> {{ report.selectedDepartment }}</p>
-                        <p><strong>Project Reference:</strong> {{ report.projectReference }}</p>
-                        <p><strong>Required Amount:</strong> {{ report.requiredAmount }}</p>
-                        <div class="reason-and-buttons">
-                            <div class="reason-container">
-                                <strong>Reason:</strong>
-                                <span>{{ report.reason }}</span>
-                            </div>
-                            <div class="buttons">
-                                <button class="btn btn-success" @click="acceptReport(index)">Accept</button>
-                                <button class="btn btn-danger" @click="denyReport(index)">Deny</button>
-                            </div>
+            <div v-for="(report, index) in financeReports" :key="index" class="slide">
+                <div class="content">
+                    <p><strong>Selected Department:</strong> {{ report.selectedDepartment }}</p>
+                    <p><strong>Project Reference:</strong> {{ report.projectReference }}</p>
+                    <p><strong>Required Amount:</strong> {{ report.requiredAmount }}</p>
+                    <div class="reason-and-buttons">
+                        <div class="reason-container">
+                            <strong>Reason:</strong>
+                            <span>{{ report.reason }}</span>
+                        </div>
+                        <div class="buttons">
+                            <button class="btn btn-success" @click="acceptReport(index)">Accept</button>
+                            <button class="btn btn-danger" @click="denyReport(index)">Deny</button>
                         </div>
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
 </template>
@@ -63,7 +63,7 @@ export default {
                 }
             })
 
-            const keyToDelete = this.financeReports[index].projectReference;
+            const keyToDelete = this.financeReports[index].id;
             try {
                 const response = await fetch(`http://127.0.0.1:6002/delete_finance_component/${keyToDelete}`, {
                     method: 'DELETE',
@@ -90,7 +90,7 @@ export default {
                 }
             })
 
-            const keyToDelete = this.financeReports[index].projectReference;
+            const keyToDelete = this.financeReports[index].id;
             try {
                 const response = await fetch(`http://127.0.0.1:6002/delete_finance_component/${keyToDelete}`, {
                     method: 'DELETE',
@@ -120,8 +120,9 @@ export default {
     /* Set the desired height */
     overflow-y: auto;
     /* Enable vertical scrollbar */
-    margin-top: 5px;
+    margin-top: 10px;
     /* Adjust margin-top as needed */
+
 }
 
 .content-container {

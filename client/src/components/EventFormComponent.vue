@@ -132,9 +132,9 @@ export default {
             eventType: "",
             dateFrom: "",
             dateTo: "",
-            numAttendees: null,
+            numAttendees: 0,
             selectedPreferences: [],
-            expectedBudget: null
+            expectedBudget: 0
         }
     },
     methods: {

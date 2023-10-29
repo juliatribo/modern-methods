@@ -147,8 +147,8 @@ export default {
                     this.selectedPreferences = data.selectedPreferences;
                     this.expectedBudget = data.expectedBudget;
                     this.scsStatus = data.scsStatus,
-                        this.adminStatus = data.adminStatus,
-                        this.financeStatus = data.financeStatus
+                    this.adminStatus = data.adminStatus,
+                    this.financeStatus = data.financeStatus
                 })
                 .catch(error => {
                     console.error('There was a problem with the fetch operation:', error);

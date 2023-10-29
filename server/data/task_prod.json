@@ -1,0 +1,44 @@
+{
+    "prod_tasks": [
+        {
+            "id": 12341,
+            "projectReferenceTask": 1234,
+            "descriptionTask": "More passion",
+            "assignTo": "Photography",
+            "prio": "Low",
+            "comment": "done!"
+        },
+        {
+            "id": 12342,
+            "projectReferenceTask": 1234566,
+            "descriptionTask": "B&W",
+            "assignTo": "Photography",
+            "prio": "Low",
+            "comment": "need more money"
+        },
+        {
+            "id": 12343,
+            "projectReferenceTask": 123456678,
+            "descriptionTask": "Color",
+            "assignTo": "Photography",
+            "prio": "High",
+            "comment": "done!"
+        },
+        {
+            "id": 74358,
+            "projectReferenceTask": 1234,
+            "descriptionTask": "new photoshoot",
+            "assignTo": "Photography",
+            "prio": "Medium",
+            "comment": "done!"
+        },
+        {
+            "id": 353120,
+            "projectReferenceTask": 1234,
+            "descriptionTask": "panoramic photos",
+            "assignTo": "Photography",
+            "prio": "Low",
+            "comment": ""
+        }
+    ]
+}

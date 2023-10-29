@@ -1,0 +1,25 @@
+{
+    "fin_requests": [
+        {
+            "id": 12345,
+            "selectedDepartment": "Production",
+            "projectReference": 7445,
+            "requiredAmount": "222",
+            "reason": "need money"
+        },
+        {
+            "id": 12346,
+            "selectedDepartment": "Production",
+            "projectReference": 697,
+            "requiredAmount": "222",
+            "reason": "need more money"
+        },
+        {
+            "id": 12347,
+            "selectedDepartment": "Service",
+            "projectReference": 12344,
+            "requiredAmount": "1000",
+            "reason": "need carrots"
+        }
+    ]
+}

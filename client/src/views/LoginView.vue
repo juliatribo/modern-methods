@@ -54,14 +54,23 @@ export default {
                 else if (userFound.department == "service") {
                     this.$router.push('service');
                 }
+                else if (userFound.department == "product") {
+                    this.$router.push('product');
+                }
                 else if (userFound.department == "customer") {
                     this.$router.push('customer');
                 }
-                else if (userFound.department =="administration"){
+                else if (userFound.department == "administration") {
                     this.$router.push('administration')
                 }
-                else if (userFound.department =="human-resources"){
+                else if (userFound.department == "human-resources") {
                     this.$router.push('human-resources')
+                }
+                else if (userFound.department == "photography") {
+                    this.$router.push('photography')
+                }
+                else if (userFound.department == "chef") {
+                    this.$router.push('chef')
                 }
                 else {
                     this.$router.push('product');

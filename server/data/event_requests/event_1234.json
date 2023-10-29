@@ -1,1 +1,1 @@
-{"recordNumber": "1234", "name": "Natassa", "eventType": "party", "dateFrom": "", "dateTo": "", "numAttendees": "1000", "selectedPreferences": ["lunch"], "expectedBudget": null}
+{"recordNumber": "1234", "name": "julia", "eventType": "request", "dateFrom": "", "dateTo": "", "numAttendees": null, "selectedPreferences": [], "expectedBudget": null, "scsStatus": false, "adminStatus": false, "financeStatus": false}

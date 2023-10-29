@@ -150,6 +150,7 @@ export default {
             console.log(fetchResult)
         },
         getTaskwithID(){
+            this.showTaskForm=false;
             const department = "humanResources";
             fetch('http://127.0.0.1:6002/get_task_by_id/' + department + '/' + this.taskIDtoGet, {
                 method: "GET",

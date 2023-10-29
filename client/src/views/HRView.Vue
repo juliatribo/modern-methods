@@ -26,7 +26,12 @@
             </form>
         </div>
         <div>
-            <button class="btn btn-primary mb-3">Check my tasks</button>
+            <button class="btn btn-primary mb-3">Check my tasks names</button>
+        </div>
+        <div>
+            <label for="description-box">Search task ID:</label>
+            <input v-model="taskIdTarget"> 
+            <button class="btn btn-primary mb-3" @click="getTask">Get task</button>
         </div>
     </div>
 </template>
@@ -46,7 +51,8 @@ export default {
             description:"",
             assigneeName:null,
             dateDue:"",  
-            department:"HR"
+            department:"HR",
+            taskIdTarget:""
         }
     },
     methods:{
@@ -71,6 +77,14 @@ export default {
             })
             console.log(fetchResult)
         },
+        getTask(){
+            const fetchResult = fetch('http://127.0.0.1:6002/get_task/'+this.taskIdTarget, {
+                method: "GET",
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+        }
     }
 }
 </script>

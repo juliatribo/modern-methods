@@ -120,7 +120,6 @@ export default {
             this.saveData(mydata);
         },
         getEventData(){
-            
             fetch('http://127.0.0.1:6002/get_event_data/' + this.recordNumberToGet, {
                 method: "GET",
                 headers: {
@@ -162,8 +161,6 @@ export default {
                 }
             })
             console.log(fetchResult)
-        
-
         },
         handleFinancialData(data) {
             this.financialData = data;

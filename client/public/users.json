@@ -1,14 +1,9 @@
 {
     "users": [
         {
-            "user": "natassa",
-            "password": "natassa",
+            "user": "scs",
+            "password": "scs",
             "department": "customer"
-        },
-        {
-            "user": "marc@event.finance.com",
-            "password": "pass",
-            "department": "finance"
         },
         {
             "user": "fin",
@@ -36,23 +31,13 @@
             "department": "chef"
         },
         {
-            "user": "maria@event.product.com",
-            "password": "password2",
-            "department": "product"
-        },
-        {
-            "user": "laura@event.service.com",
-            "password": "password3",
-            "department": "service"
-        },
-        {
-            "user": "julia",
-            "password": "julia",
+            "user": "admin",
+            "password": "admin",
             "department": "administration"
         },
         {
-            "user": "ida",
-            "password": "ida",
+            "user": "hr",
+            "password": "hr",
             "department": "human-resources"
         }
     ]

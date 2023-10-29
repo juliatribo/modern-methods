@@ -8,7 +8,7 @@
                     <EventFormComponent @saveEventData="(options) => saveData(options)" />
                 </form>
                 <div v-if="!showForm">
-                    <label for="Insert record ID">Record Number:</label>
+                    <label for="Insert record ID">Event Number:</label>
                     <input type="text" class="form-control" v-model="recordNumberToGet">
                     <button @click="getEventData" class="btn btn-primary mb-3">Get Event</button>
                 </div>

@@ -126,9 +126,8 @@ def get_data(record_id):
 
 
 @app.route('/add_event', methods=['POST'])
-def add_data():
-    print("Running add data  ")
-    print("data", request.get_json())
+def add_event():
+    print("Running add data")
     request_data = request.get_json()
     response = process_add_event(request_data)
     return jsonify(response)

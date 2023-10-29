@@ -1,5 +1,6 @@
-from server import process_add_event
+from server import process_add_event, process_get_tasks
 
+import os
 
 def test_process_add_data():
     request = {"recordNumber": 1,
@@ -12,4 +13,13 @@ def test_process_add_data():
                 "expectedBudget": 3000}
     process_add_event(request)
 
-test_process_add_data()
+
+
+def test_get_tasks():
+    department="human_resources"
+    path_to_tasks = f"data/tasks/{department}"
+    result = process_get_tasks(path_to_tasks)
+    print(result)
+
+# test_process_add_data()
+test_get_tasks()

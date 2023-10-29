@@ -1,4 +1,5 @@
 import json
+import os
 from typing import Dict
 from flask_cors import CORS, cross_origin
 from flask import Flask, request, jsonify
@@ -9,7 +10,7 @@ app.config['CORS_HEADERS'] = 'Content-Type'
 
 
 def decode_department(department):
-    if department == "HR" or department == "humanResources":
+    if department == "HR" or department == "humanResources"  or department == "human_resources":
         return "human_resources"
 
 
@@ -21,11 +22,23 @@ def process_add_event(request: Dict):
 
 
 def process_add_task(request: Dict):
+    print("addidng task", request["department"])
     task_id = request["taskID"]
     department = decode_department(request["department"])
     with open(f"data/tasks/{department}/task_{task_id}.json", "w") as f:
         json.dump(request, f)
     return {"status": "ok"}
+
+def process_get_tasks(tasks_path):
+    file_list = []
+    if os.path.exists(tasks_path):
+        for item in os.listdir(tasks_path):
+            item_path = os.path.join(tasks_path, item)
+            if os.path.isfile(item_path):
+                file_list.append(item)
+    return file_list
+
+
 
 
 def process_add_finance_report(new_data):
@@ -124,10 +137,19 @@ def add_data():
 @app.route('/add_task', methods=['POST'])
 def add_task():
     print("Running add task")
-    print("task", request.get_json())
     request_data = request.get_json()
     response = process_add_task(request_data)
     return jsonify(response)
+
+@app.route('/get_tasks/<string:department>', methods=['GET'])
+def get_tasks(department):
+    print("Running get tasks")
+    department = decode_department(department)
+    path_to_tasks = f"data/tasks/{department}"
+    tasks = process_get_tasks(path_to_tasks)
+    response = {"status": "ok", "tasks": tasks}
+    return jsonify(response)
+
 
 
 @app.route('/get_finance_data', methods=['GET'])

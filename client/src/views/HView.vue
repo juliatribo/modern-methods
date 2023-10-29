@@ -46,6 +46,41 @@
             </ul>
         </div>
 
+        <div>
+            <label>Task id:</label>
+            <input type="text" v-model="taskIDtoGet" id="taskIDtoGet" name="taskIDtoGet" >
+            <button @click="getTaskwithID" class="btn btn-primary mb-3">Get task</button>
+        </div>
+
+        <form v-if="showTask">
+            <div class="form-container">
+                <div class="form-group">
+                    <label>TaskID:</label>
+                    {{taskIDtoGet}}
+                </div>
+                <div class="form-group">
+                    <label>Title:</label>
+                    {{taskTitle}}
+                </div>
+
+                <div class="form-group">
+                    <label>Assigned to:</label>
+                    {{assigneeName}}
+                </div>
+
+                <div class="form-group">
+                    <label for="description-box">Description:</label>
+                    {{description}}
+                </div>
+
+                <div class="form-group">
+                    <label>Date due:</label>
+                    <div>{{dateDue}}</div>
+                    <input type="date" v-model="dateDue">   
+                </div>
+            </div>
+        </form>
+
 </div>
 </template>
 
@@ -66,6 +101,8 @@ export default {
             dateDue:"",  
             department:"humanResources",
             tasks:[],
+            taskIDtoGet:"",
+            showTask:false
         }
     },
     methods:{
@@ -112,6 +149,33 @@ export default {
             })
             console.log(fetchResult)
         },
+        getTaskwithID(){
+            const department = "humanResources";
+            fetch('http://127.0.0.1:6002/get_task_by_id/' + department + '/' + this.taskIDtoGet, {
+                method: "GET",
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log(data);
+                    this.showTask=true,
+                    this.taskTitle=data.task.title,
+                    this.description=data.task.description,
+                    this.assigneeName=data.task.assigneeName,
+                    this.dateDue=data.task.dateDue,  
+                    this.taskIDtoGet=data.task.taskID
+                })
+                .catch(error => {
+                    console.error('There was a problem with the fetch operation:', error);
+                });
+        }
     }
 }
 </script>

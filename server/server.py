@@ -35,7 +35,8 @@ def process_get_tasks(tasks_path):
         for item in os.listdir(tasks_path):
             item_path = os.path.join(tasks_path, item)
             if os.path.isfile(item_path):
-                file_list.append(item)
+                name, _ = item.split(".")
+                file_list.append(name)
     return file_list
 
 
@@ -150,6 +151,15 @@ def get_tasks(department):
     return jsonify(response)
 
 
+@app.route('/get_task_by_id/<string:department>/<string:taskName>', methods=['GET'])
+def get_task_by_id(department, taskName):
+    print("Running get task by id")
+    department = decode_department(department)
+    path_to_task = f"data/tasks/{department}/{taskName}.json"
+    with open(path_to_task, "r") as f:
+        task = json.load(f)
+    response = {"status": "ok", "task": task}
+    return jsonify(response)
 
 @app.route('/get_finance_data', methods=['GET'])
 @cross_origin()

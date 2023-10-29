@@ -6,7 +6,7 @@ import ProductView from '../views/ProductView.vue';
 import ServiceView from '../views/ServiceView.vue';
 import CustomerView from '../views/CustomerView.vue';
 import AdminManagerView from '../views/AdminManagerView.vue';
-import HRView from '../views/HRView.vue';
+import HView from '../views/HView.vue';
 import ChefView from '../views/ChefView.vue';
 import PhotographyView from '../views/PhotographyView.vue';
 
@@ -45,8 +45,8 @@ const routes = [
     },
     {
         path: '/human-resources',
-        name: 'HRView',
-        component: HRView
+        name: 'HView',
+        component: HView
     },
     {
         path: '/chef',
